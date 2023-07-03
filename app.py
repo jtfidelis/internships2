@@ -14,69 +14,57 @@ def internships(program_type):
 
 @app.route('/internships/<int:program_id>')
 def program(program_id):
-    program = read_programs_by_program_id(program_id)
+    program = read_program_by_id(id)
     return render_template("program.html",program=program)
-
 
 @app.route('/register')
 def register():
     return render_template('register.html')
 
-@app.route('/processed', methods=['post'])
+@app.route('/processed', methods=['POST'])
 def processing():
     program_data = {
-        "program_type": request.form['program_type'],
-        "program_name": request.form['program_name'],
+        "program_type": request.form['program_program_type'],
+        "program_name": request.form['program_program_name'],
         "salary": request.form['program_salary'],
         "duration": request.form['program_duration'],
-        "description": request.form['program_desc'],
+        "description": request.form['program_description'],
         "url": request.form['program_url']
     }
     insert_program(program_data)
     return redirect(url_for('internships', program_type=request.form['program_type']))
 
-
 @app.route('/modify', methods=['post'])
 def modify():
-    # 1. identify whether user clicked edit or delete
-       # if edit, then do this:
-    if request.form["modify"] == "edit":
-        # retrieve record using id
+    if request.form["modify"] == "EDIT":
         program_id = request.form["program_id"]
-        program = read_programs_by_program_id(program_id)
-        # update record with new data
+        program = read_program_by_id(program_id)
         return render_template('update.html', program=program)
-    # if delete, then do this
-    elif request.form["modify"] == "delete":
-        # retrieve record using id
+    elif request.form["modify"] == "DELETE":
         program_id = request.form["program_id"]
-        program = read_programs_by_program_id(program_id)
-        # delete the record
+        program = read_program_by_id(program_id)
         delete_program(program_id)
-        # redirect user to program list by program type
         return redirect(url_for("internships", program_type=program["program_type"]))
 
 @app.route('/update', methods=['post'])
 def update():
     program_data = {
         "program_id" : request.form["program_id"],
-        "program_type": request.form['program_type'],
-        "program_name": request.form['program_name'],
+        "program_type": request.form['program_program_type'],
+        "program_name": request.form['program_program_name'],
         "salary": request.form['program_salary'],
         "duration": request.form['program_duration'],
-        "description": request.form['program_desc'],
+        "description": request.form['program_description'],
         "url": request.form['program_url']
     }
     update_program(program_data)
     return redirect(url_for('program',program_id = request.form['program_id']))
 
-def delete_program(program_id):
-    conn, cur = connect_to_db(db_path)
-    query = "DELETE FROM programs WHERE id = ?"
-    values = (program_id,)
-    cur.execute(query, values)
-    conn.commit()
-    conn.close()
-
+@app.route('/search', methods=['get'])
+def search():
+    query = request.args.get('query', '')
+    results = search_programs(query)
+    return render_template('search.html', query=query, results=results)
+    
 if __name__ == "__main__":
     app.run(debug=True)

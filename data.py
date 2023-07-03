@@ -2,14 +2,11 @@ import sqlite3
 
 db_path = "progs.db"
 
-# This function conencts to the DB and returns a conn and cur objects
 def connect_to_db(path):
     conn = sqlite3.connect(path)
-    # Converting tuples to dictionaries
     conn.row_factory = sqlite3.Row
     return (conn, conn.cursor())
 
-# This function returns programs by program_type
 def read_programs_by_program_type(program_type):
     conn, cur = connect_to_db(db_path)
     query = 'SELECT * FROM programs WHERE program_type = ?'
@@ -18,16 +15,14 @@ def read_programs_by_program_type(program_type):
     conn.close()
     return results
 
-# This function retrieves 1 program by program_id
-def read_programs_by_program_id(program_id):
+def read_program_by_id(id):
     conn, cur = connect_to_db(db_path)
     query = 'SELECT * FROM programs WHERE id = ?'
-    value = program_id
-    result = cur.execute(query,(value,)).fetchone()
+    value = id
+    results = cur.execute(query,(value,)).fetchone()
     conn.close()
-    return result
+    return results
 
-# This function inserts 1 program data
 def insert_program(program_data):
     conn, cur = connect_to_db(db_path)
     query = 'INSERT INTO programs (program_type, program_name, salary, duration, description, url) VALUES (?,?,?,?,?,?)'
@@ -38,7 +33,6 @@ def insert_program(program_data):
     conn.commit()
     conn.close()
 
-# This function updates a record
 def update_program(program_data):
     conn, cur = connect_to_db(db_path)
     query = "UPDATE programs SET program_type=?, program_name=?, salary=?, duration=?, description=?, url=? WHERE id=?"
@@ -49,3 +43,19 @@ def update_program(program_data):
     cur.execute(query, values)
     conn.commit()
     conn.close()
+    
+def delete_program(program_id):
+    con, cur = connect_to_db(db_path)
+    query = "DELETE FROM programs WHERE id=?"
+    values = (program_id,)
+    cur.execute(query, values)
+    con.commit()
+    con.close()
+
+def search_programs(query):
+    conn, cur = connect_to_db(db_path)
+    sql_query = "SELECT * FROM programs WHERE location LIKE ? OR name LIKE ?"
+    value = "%{}%".format(query)
+    results = cur.execute(sql_query, (value, value)).fetchall()
+    conn.close()
+    return results
