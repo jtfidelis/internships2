@@ -28,7 +28,7 @@ def processing():
         "program_name": request.form['program_name'],
         "salary": request.form['program_salary'],
         "duration": request.form['program_duration'],
-        "description": request.form['program_description'],
+        "description": request.form['program_desc'],
         "url": request.form['program_url']
     }
     insert_program(program_data)
@@ -54,7 +54,7 @@ def update():
         "program_name": request.form['program_name'],
         "salary": request.form['program_salary'],
         "duration": request.form['program_duration'],
-        "description": request.form['program_description'],
+        "description": request.form['program_desc'],
         "url": request.form['program_url']
     }
     update_program(program_data)
