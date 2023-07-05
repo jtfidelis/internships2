@@ -24,7 +24,7 @@ def register():
 @app.route('/processed', methods=['POST'])
 def processing():
     program_data = {
-        "program_type": request.form['program_program_type'],
+        "program_type": request.form['program_type'],
         "program_name": request.form['program_program_name'],
         "salary": request.form['program_salary'],
         "duration": request.form['program_duration'],
@@ -50,7 +50,7 @@ def modify():
 def update():
     program_data = {
         "program_id" : request.form["program_id"],
-        "program_type": request.form['program_program_type'],
+        "program_type": request.form['program_type'],
         "program_name": request.form['program_program_name'],
         "salary": request.form['program_salary'],
         "duration": request.form['program_duration'],
