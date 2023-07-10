@@ -3,7 +3,11 @@ from data import *
 
 app = Flask(__name__)
 
-@app.route('/')
+@app.route('/home')
+def home():
+    return render_template('home.html')
+
+@app.route('/index')
 def index():
     return render_template('index.html')
 
@@ -14,7 +18,7 @@ def internships(program_type):
 
 @app.route('/internships/<int:program_id>')
 def program(program_id):
-    program = read_program_by_id(id)
+    program = read_program_by_program_id(program_id)
     return render_template("program.html",program=program)
 
 @app.route('/register')
@@ -36,13 +40,13 @@ def processing():
 
 @app.route('/modify', methods=['post'])
 def modify():
-    if request.form["modify"] == "EDIT":
+    if request.form["modify"] == "edit":
         program_id = request.form["program_id"]
-        program = read_program_by_id(program_id)
+        program = read_program_by_program_id(program_id)
         return render_template('update.html', program=program)
-    elif request.form["modify"] == "DELETE":
+    elif request.form["modify"] == "delete":
         program_id = request.form["program_id"]
-        program = read_program_by_id(program_id)
+        program = read_program_by_program_id(program_id)
         delete_program(program_id)
         return redirect(url_for("internships", program_type=program["program_type"]))
 
@@ -59,12 +63,6 @@ def update():
     }
     update_program(program_data)
     return redirect(url_for('program',program_id = request.form['program_id']))
-
-@app.route('/search', methods=['get'])
-def search():
-    query = request.args.get('query', '')
-    results = search_programs(query)
-    return render_template('search.html', query=query, results=results)
     
 if __name__ == "__main__":
     app.run(debug=True)

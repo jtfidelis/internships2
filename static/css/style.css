@@ -1,41 +1,189 @@
 .navbar {
-    background-color: #025464;
-}
-
-.nav-link {
-    position: relative;
-}
-
-.nav-link::after {
-    opacity: 0;
-    transition: all 0.2s;
-    height: 2px;
+    background-color: #004AAD;
     width: 100%;
-    background-color:antiquewhite;
-    position: absolute;
-    bottom: 0;
-    left: 0;
+    height: 70px;
+    overflow: hidden;
+    position: sticky;
+    top: 0;
+    font-family: 'Georgia', serif;
 }
 
-.nav-link:hover::after {
-    content: '';
-    opacity: 1;
+.navbar li {
+    margin: 10px;
 }
 
-h1 {
-    color:#FFD53D;
+.navbar li a:hover {
+    background-color: #6ebccc;
+    position: relative;
+    border-radius: 10px;
+    transition: all 1s;
+}
+
+.navbar li a:hover:before {
+    background-color: #6ebccc;
+    position: relative;
+    border-radius: 10px;
+    transition: all 1s;
+}
+
+.navbar li a:hover:after {
+    background-color: #6ebccc;
+    position: relative;
+    border-radius: 10px;
+    transition: all 1s;
+}
+
+.home_h1_1 {
+    color:#ffffff;
     text-align: center;
+    font-size: 80px;
+    font-family: 'Garamond', serif;
+    font-weight: bold;
+}
+
+.home_h1_2 {
+    color:#ffffff;
+    text-align: center;
+    font-size: 80px;
+    font-family: 'Garamond', serif;
+    font-weight: bold;
+}
+
+.home_logo {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+.home_background{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    z-index: -1;
+    opacity: 30%;
+    width: 1920px;
+    height: 1080px;
+    margin-top: 70px;
+}
+
+.index_h1 {
+    color:#ffffff;
+    text-align: center;
+    font-family: 'Garamond', serif;
+    font-weight: bold;
+    border:2px groove;
+            border-bottom-color:#2E2C3B;
+            border-top-color:#2E2C3B;
+            border-left-color:#2E2C3B;
+            border-right-color:#2E2C3B;
+}
+
+.index_subtext {
+    color:#ffffff;
+    font-family: 'Arial', sans-serif;
 }
 
 body {
-    background-color: #5F9EA0;
+    background-color: #005bd4;
     color: #050A30;
     font-size: 20px;
-
 }
 
-span {
-    color: #050A30;
+.index_list {
+    color: #ffffff;
+    font-family: 'Times New Roman', serif;
     font-weight: bold;
     font-size: 20px;
-  }
+    text-decoration: none;
+}
+
+.index_list a {
+    color: #ffffff;
+    font-family: 'Times New Roman', serif;
+    font-weight: bold;
+    font-size: 20px;
+    text-decoration: none;
+}
+
+.internship_h1 {
+    color:#ffffff;
+    text-align: center;
+    font-family: 'Garamond', serif;
+    font-weight: bold;
+    border:2px groove;
+    border-bottom-color:#2E2C3B;
+    border-top-color:#2E2C3B;
+    border-left-color:#2E2C3B;
+    border-right-color:#2E2C3B;
+}
+
+.internship_list {
+    color: #ffffff;
+    font-family: 'Times New Roman', serif;
+    font-weight: bold;
+    font-size: 20px;
+    text-decoration: none;
+}
+
+.internship_list a {
+    color: #ffffff;
+    font-family: 'Times New Roman', serif;
+    font-weight: bold;
+    font-size: 20px;
+    text-decoration: none;
+}
+
+.program_h1 {
+    color:#ffffff;
+    text-align: center;
+    font-family: 'Garamond', serif;
+    font-weight: bold;
+    border:2px groove;
+    border-bottom-color:#2E2C3B;
+    border-top-color:#2E2C3B;
+    border-left-color:#2E2C3B;
+    border-right-color:#2E2C3B;
+}
+
+.program_image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+.program_details {
+    color: #ffffff;
+    font-family: 'Times New Roman', serif;
+    font-size: 20px;
+    text-decoration: none;
+}
+
+.program_numbers {
+    color: #ffffff;
+    font-family: 'Times New Roman', serif;
+    font-size: 20px;
+    text-decoration: none;
+}
+
+.register_h1 {
+    color:#ffffff;
+    text-align: center;
+    font-family: 'Garamond', serif;
+    font-weight: bold;
+    border:2px groove;
+    border-bottom-color:#2E2C3B;
+    border-top-color:#2E2C3B;
+    border-left-color:#2E2C3B;
+    border-right-color:#2E2C3B;
+}
+
+.register_form {
+    color: #ffffff;
+    font-family: 'Times New Roman', serif;
+    font-size: 20px;
+    text-decoration: none;
+    font-weight: bold;
+}

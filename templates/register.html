@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>REGISTER AN INTERNSHIP OPPORTUNITY</h1>
-<form action="{{ url_for('processing') }}" method="post">
+<h1 class="register_h1">REGISTER A NEW INTERNSHIP PROGRAM</h1>
+<form class="register_form" action="{{ url_for('processing') }}" method="post">
     <label for="p_type">Type of Program:</label>
     <select name="program_type" id="p_type" required>
         <option disabled selected value>...</option>
@@ -25,6 +25,6 @@
     <label for="p_url">Image URL:</label>
     <input type="url" name="program_url" id="p_url"><br>
     <textarea name="program_desc" placeholder="Tell something about your internship..." cols="30" rows="10"></textarea><br> <!-- #baguhin -->
-    <input type="submit" value="Register!">
+    <input type="submit" class="btn btn-info" style="text-transform:uppercase" value="Register">
 </form>
 {% endblock %}

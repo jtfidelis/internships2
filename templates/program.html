@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1>{{ program.name }}</h1>
-<img src="{{program.url}}">
-<p>{{ program.description }}</p>
-<ul>
+<h1 class="program_h1">{{ program.program_name }}</h1>
+<img class="program_image" src="{{program.url}}">
+<p class="program_details">{{ program.description }}</p>
+<ul class="program_numbers">
     {% if program.duration %}
     <li>Duration: {{ program.duration }}</li>
     {% endif %}
@@ -11,7 +11,7 @@
 </ul>
 <form action="{{ url_for('modify') }}" method="post">
     <input type="hidden" name="program_id" value="{{ program.id }}">
-    <input class="btn btn-secondary" type="submit" name="modify" value="edit"></input>
-    <input class="btn btn-danger" type="submit" name="modify" value="delete"></input>
+    <input class="btn btn-success" style="text-transform:uppercase" type="submit" name="modify" value="edit"></input>
+    <input class="btn btn-danger" style="text-transform:uppercase" type="submit" name="modify" value="delete"></input>
 </form>
 {% endblock %}

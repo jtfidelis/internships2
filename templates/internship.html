@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1>List of {{ program_type }} Programs</h1>
+<h1 class="internship_h1">List of {{ program_type }} Programs</h1>
 
-<ul>
+<ul class="internship_list">
     {% for program in programs %}
     <li><a href="/internships/{{ program.id }}">{{ program.program_name }}</a></li>
     {% endfor %}

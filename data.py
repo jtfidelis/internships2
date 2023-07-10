@@ -15,10 +15,10 @@ def read_programs_by_program_type(program_type):
     conn.close()
     return results
 
-def read_program_by_id(id):
+def read_program_by_program_id(program_id):
     conn, cur = connect_to_db(db_path)
     query = 'SELECT * FROM programs WHERE id = ?'
-    value = id
+    value = program_id
     results = cur.execute(query,(value,)).fetchone()
     conn.close()
     return results
@@ -45,17 +45,9 @@ def update_program(program_data):
     conn.close()
     
 def delete_program(program_id):
-    con, cur = connect_to_db(db_path)
+    conn, cur = connect_to_db(db_path)
     query = "DELETE FROM programs WHERE id=?"
     values = (program_id,)
     cur.execute(query, values)
-    con.commit()
-    con.close()
-
-def search_programs(query):
-    conn, cur = connect_to_db(db_path)
-    sql_query = "SELECT * FROM programs WHERE location LIKE ? OR name LIKE ?"
-    value = "%{}%".format(query)
-    results = cur.execute(sql_query, (value, value)).fetchall()
+    conn.commit()
     conn.close()
-    return results
