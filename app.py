@@ -3,7 +3,7 @@ from data import *
 
 app = Flask(__name__)
 
-@app.route('/home')
+@app.route('/')
 def home():
     return render_template('home.html')
 
